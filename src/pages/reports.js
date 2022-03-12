@@ -8,7 +8,6 @@ export default function Reports() {
         <MainLayout>
             <BarChart />
             {/* <Modal open={open} close={closeFunction}> */}
-            <PieChart />
             {/* </Modal> */}
         </MainLayout>
     );

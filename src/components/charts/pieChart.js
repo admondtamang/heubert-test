@@ -27,5 +27,16 @@ export default function PieChart() {
             },
         ],
     };
-    return <Pie data={data} />;
+
+    const options = {
+        tooltipTemplate: "<%= value %>",
+
+        showTooltips: true,
+
+        onAnimationComplete: function () {
+            this.showTooltip(this.datasets[0].points, true);
+        },
+        tooltipEvents: [],
+    };
+    return <Pie data={data} options={options} />;
 }

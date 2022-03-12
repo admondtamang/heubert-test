@@ -39,6 +39,8 @@ export default function BarChart() {
             }
         },
         responsive: true,
+
+        showTooltips: true,
         plugins: {
             legend: {
                 position: "right",
@@ -57,6 +59,7 @@ export default function BarChart() {
     return (
         <>
             <Bar options={options} data={data} style={{ height: 500 }} />
+
             <Modal title="Basic Modal" visible={open} onOk={handleCancel} onCancel={handleCancel}>
                 <PieChart />
             </Modal>
