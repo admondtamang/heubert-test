@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import useSWR from "swr";
 import BarChart from "../components/charts/barChart";
-import PieChart from "../components/charts/pieChart";
 import MainLayout from "../layouts/MainLayout";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());

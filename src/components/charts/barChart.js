@@ -1,27 +1,22 @@
 import React, { useRef, useState } from "react";
 
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
-import { Bar } from "react-chartjs-2";
-import { Modal, Button } from "antd";
+import { Bar, getElementAtEvent } from "react-chartjs-2";
+import { Modal } from "antd";
 import PieChart from "./pieChart";
+import { structureChartData } from "src/utils/restructure-charts-data";
+
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-const myChart = new ChartJS(ctx);
 
 export default function BarChart({ data }) {
+    const chartRef = useRef();
     const [open, setOpen] = useState(false);
-
+    const [name, setName] = useState("");
     if (!data) {
         return "NO data";
     }
 
-    let labels = [],
-        values = [];
-
-    // data push to labels and values
-    data.map((row) => {
-        labels.push(row.Lead_Source);
-        values.push(row.total);
-    });
+    const { labels, values } = structureChartData(data, "Lead_Source", "total");
 
     // chart Data
     const chart_data = {
@@ -44,25 +39,7 @@ export default function BarChart({ data }) {
                 borderWidth: 2,
             },
         },
-        onClick: function (evt, element) {
-            if (element.length > 0) {
-                setOpen(true);
-                console.log(element, element[0].element.$context.raw);
-                // console.log(element.datasets[activeElement[0]._datasetIndex].data[activeElement[0]._index]);
-            }
-
-            const points = myChart.getElementsAtEventForMode(evt, "nearest", { intersect: true }, true);
-
-            if (points.length) {
-                const firstPoint = points[0];
-                const label = myChart.data.labels[firstPoint.index];
-                const value = myChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
-            }
-        },
         responsive: true,
-        // tooltips: {
-        //     mode: "label",
-        // },
         showTooltips: true,
         plugins: {
             legend: {
@@ -73,7 +50,12 @@ export default function BarChart({ data }) {
                 text: "Chart.js Horizontal Bar Chart",
             },
         },
-        // events: ["click"],
+    };
+
+    const onClick = (event) => {
+        const current_data = getElementAtEvent(chartRef.current, event)?.[0];
+        setName(data[current_data?.index]?.Lead_Source);
+        if (data[current_data?.index]?.Lead_Source) setOpen(true);
     };
 
     const handleCancel = () => {
@@ -81,10 +63,10 @@ export default function BarChart({ data }) {
     };
     return (
         <>
-            <Bar options={options} data={chart_data} style={{ height: 500 }} />
+            <Bar ref={chartRef} onClick={onClick} options={options} data={chart_data} style={{ height: 500 }} />
 
-            <Modal title="Basic Modal" visible={open} onOk={handleCancel} onCancel={handleCancel}>
-                <PieChart />
+            <Modal title={`Leads Origin From ${name}`} visible={open} onOk={handleCancel} onCancel={handleCancel}>
+                <PieChart name={name} />
             </Modal>
         </>
     );
