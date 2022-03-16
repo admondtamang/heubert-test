@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-import useSWR from "swr";
+import useCustomSwr from "src/hooks/use-swr";
 import BarChart from "../components/charts/barChart";
 import MainLayout from "../layouts/MainLayout";
-
-const fetcher = (url) => fetch(url).then((res) => res.json());
-
 export default function Reports() {
-    const { data, error } = useSWR("/api/leads_source", fetcher);
-    console.log(data);
+    const { data, error } = useCustomSwr("/api/leads_source");
     if (error) return "An error has occurred.";
     if (!data) return "Loading...";
     return (
