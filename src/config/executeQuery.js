@@ -7,6 +7,7 @@ export const db = mysql({
         host: DATABASE.DB_HOST,
         database: DATABASE.DB_NAME,
         user: DATABASE.DB_USER,
+        port: 8080,
         password: DATABASE.DB_PASS,
     },
 });
