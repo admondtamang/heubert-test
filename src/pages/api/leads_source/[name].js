@@ -11,7 +11,7 @@ export default async function userHandler(req, res) {
                   COUNT(ls.Lead_Source) total
                   FROM
                   leads ls
-                  where ls.Lead_Source="Google"
+                  where ls.Lead_Source="${name}"
                   GROUP BY
                   ls.Lead_Source,
                   ls.Lead_Origin`;
