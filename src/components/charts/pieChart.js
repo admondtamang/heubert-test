@@ -18,7 +18,7 @@ export default function PieChart({ name }) {
     if (error) return "An error has occurred.";
     if (!data) return "Loading...";
 
-    const { labels, values } = structureChartData(data, "Lead_Origin", "total");
+    const { labels, values } = structureChartData(data.data, "Lead_Origin", "total");
 
     const chart_data = {
         labels: labels,

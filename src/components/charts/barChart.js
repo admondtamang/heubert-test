@@ -16,7 +16,7 @@ export default function BarChart({ data }) {
         return "NO data";
     }
 
-    const { labels, values } = structureChartData(data, "Lead_Source", "total");
+    const { labels, values } = structureChartData(data.data, "Lead_Source", "total");
 
     // chart Data
     const chart_data = {
@@ -54,8 +54,8 @@ export default function BarChart({ data }) {
 
     const onClick = (event) => {
         const current_data = getElementAtEvent(chartRef.current, event)?.[0];
-        setName(data[current_data?.index]?.Lead_Source);
-        if (data[current_data?.index]?.Lead_Source) setOpen(true);
+        setName(data.data[current_data?.index]?.Lead_Source);
+        if (data.data[current_data?.index]?.Lead_Source) setOpen(true);
     };
 
     const handleCancel = () => {

@@ -34,7 +34,7 @@ export default function CustomTable({ data, page, queryPageSize, handleChangePag
                     </TableHead>
 
                     <TableBody>
-                        {data?.data?.map((row, index) => (
+                        {data?.data?.leads?.map((row, index) => (
                             <TableRow key={index}>
                                 <TableCell>{row.Lead_Number}</TableCell>
                                 <TableCell>{row.Lead_Origin}</TableCell>
@@ -60,7 +60,7 @@ export default function CustomTable({ data, page, queryPageSize, handleChangePag
                     rowsPerPageOptions={[5, 10, 25]}
                     colSpan={3}
                     rowsPerPage={queryPageSize}
-                    count={data?.count}
+                    count={data?.data?.count}
                     page={page}
                     SelectProps={{
                         inputProps: {

@@ -1,4 +1,6 @@
-import executeQuery from "@/config/executeQuery";
+import { executeQuery } from "@/utils/query";
+import { respond } from "@/utils/response";
+import { HTTP } from "src/constants/response";
 
 export default async function userHandler(req, res) {
     const {
@@ -19,16 +21,11 @@ export default async function userHandler(req, res) {
     switch (method) {
         case "GET":
             let data = await executeQuery(query, []);
+            respond(res, HTTP.StatusOk, "Sucessfully loaded", data);
+            break;
 
-            // Get data from your database
-            res.status(200).json(data);
-            break;
-        case "PUT":
-            // Update or create data in your database
-            res.status(200).json({ id, name: name || `User ${id}` });
-            break;
         default:
-            res.setHeader("Allow", ["GET", "PUT"]);
-            res.status(405).end(`Method ${method} Not Allowed`);
+            res.setHeader("Allow", ["GET"]);
+            respond(res, HTTP.StatusMethodNotAllowed, `Method ${method} Not Allowed`);
     }
 }
