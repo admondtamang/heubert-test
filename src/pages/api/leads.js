@@ -5,7 +5,7 @@ import { HTTP } from "src/constants/response";
 
 export default async function handler(req, res) {
     const { _limit, _page, searchTerms, _order, _sort, Lead_Source, Engagement_Score, Lead_Number } = req.query;
-    console.log(req.query);
+
     const offset = _limit * _page - _limit;
 
     function headerQuery(query) {
@@ -27,7 +27,7 @@ export default async function handler(req, res) {
         data: headerQuery("select * ") + ` limit ${offset},${_limit}`,
         count: headerQuery("select count(*) count "),
     };
-    console.log(query);
+
     try {
         const { data, count } = await executeQueryAndCount(query);
 
