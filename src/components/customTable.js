@@ -15,27 +15,27 @@ export default function CustomTable({ data, page, queryPageSize, handleChangePag
                     <TableHead>
                         <TableRow>
                             <TableCell>Lead_Number</TableCell>
-                            <TableCell>Lead_Origin</TableCell>
-                            <TableCell>Lead_Source</TableCell>
-                            <TableCell>Notes</TableCell>
-                            <TableCell>Lead_Stage</TableCell>
-                            <TableCell>Engagement_Score</TableCell>
-                            <TableCell>TotalVisits</TableCell>
-                            <TableCell>Page_Views_Per_Visit</TableCell>
-                            <TableCell>Average_Time_Per_Visit</TableCell>
-                            <TableCell>Last_Activity</TableCell>
-                            <TableCell>Last_Activity_Date</TableCell>
-                            <TableCell>Lead_Conversion_Date</TableCell>
-                            <TableCell>Cityold</TableCell>
-                            <TableCell>Specialization</TableCell>
-                            <TableCell>Entrance_Test</TableCell>
-                            <TableCell>What_is_your_current_occupation</TableCell>
+                            <TableCell align="right">Lead_Origin</TableCell>
+                            <TableCell align="right">Lead_Source</TableCell>
+                            <TableCell align="right">Notes</TableCell>
+                            <TableCell align="right">Lead_Stage</TableCell>
+                            <TableCell align="right">Engagement_Score</TableCell>
+                            <TableCell align="right">TotalVisits</TableCell>
+                            <TableCell align="right">Page_Views_Per_Visit</TableCell>
+                            <TableCell align="right">Average_Time_Per_Visit</TableCell>
+                            <TableCell align="right">Last_Activity</TableCell>
+                            <TableCell align="right">Last_Activity_Date</TableCell>
+                            <TableCell align="right">Lead_Conversion_Date</TableCell>
+                            <TableCell align="right">Cityold</TableCell>
+                            <TableCell align="right">Specialization</TableCell>
+                            <TableCell align="right">Entrance_Test</TableCell>
+                            <TableCell align="right">What_is_your_current_occupation</TableCell>
                         </TableRow>
                     </TableHead>
 
                     <TableBody>
                         {data?.data?.leads?.map((row, index) => (
-                            <TableRow key={index}>
+                            <TableRow key={row.Lead_Number}>
                                 <TableCell>{row.Lead_Number}</TableCell>
                                 <TableCell>{row.Lead_Origin}</TableCell>
                                 <TableCell>{row.Lead_Source}</TableCell>
