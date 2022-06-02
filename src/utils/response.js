@@ -1,5 +1,5 @@
-const { Status } = require("../constants/response");
-
+const { Status } = require('../constants/response');
+// fklasj;
 /**
  * Prepares a json response according to the arguments provided.
  *
@@ -9,19 +9,19 @@ const { Status } = require("../constants/response");
  * @param data
  */
 const respond = (res, code, message, data) => {
-    let response = {
-        status: getStatusMessage(code),
-    };
+  let response = {
+    status: getStatusMessage(code),
+  };
 
-    if (message) {
-        response.message = message;
-    }
+  if (message) {
+    response.message = message;
+  }
 
-    if (data) {
-        response.data = data;
-    }
+  if (data) {
+    response.data = data;
+  }
 
-    return res.status(code).json(response);
+  return res.status(code).json(response);
 };
 
 /**
@@ -32,19 +32,19 @@ const respond = (res, code, message, data) => {
  * @returns {string}
  */
 const getStatusMessage = (code) => {
-    if (code >= 100 && code <= 199) {
-        return Status.Information;
-    } else if (code >= 200 && code <= 299) {
-        return Status.Success;
-    } else if (code >= 300 && code <= 399) {
-        return Status.Redirect;
-    } else if (code >= 400 && code <= 499) {
-        return Status.Failed;
-    } else {
-        return Status.Unknown;
-    }
+  if (code >= 100 && code <= 199) {
+    return Status.Information;
+  } else if (code >= 200 && code <= 299) {
+    return Status.Success;
+  } else if (code >= 300 && code <= 399) {
+    return Status.Redirect;
+  } else if (code >= 400 && code <= 499) {
+    return Status.Failed;
+  } else {
+    return Status.Unknown;
+  }
 };
 
 module.exports = {
-    respond,
+  respond,
 };
